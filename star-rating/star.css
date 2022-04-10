@@ -1,0 +1,19 @@
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.fa-star:before {
+  content: "\f006";
+  color: #5f6368;
+}
+
+.fa-star.fill:before {
+  content: "\f005";
+  color: #d56e0c;
+}
