@@ -5,8 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pixel art</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #grid {
+        display: grid;
+        height: 600px;
+        width: 600px;
+        margin: 40px auto 0;
+        border: 1px solid lightgray;
+      }
+
+      .box {
+        border: inherit;
+      }
+    </style>
   </head>
   <body>
-    <p>Pixel art dom challenge</p>
+    <div id="grid"></div>
+
+    <!-- <script src="script.js"></script> -->
+    <script>
+      new PixelArt("#grid", 10, 10);
+      function PixelArt(el, rows, cols) {
+        // Logic for generating grid layout
+        let gridEle = document.querySelector(el);
+        let fragment = document.createDocumentFragment();
+        gridEle.style.grid = `repeat(${rows}, 1fr) / repeat(${cols}, 1fr)`;
+        for (let i = 0; i < rows * cols; i++) {
+          let div = document.createElement("div");
+          div.classList.add("box");
+          fragment.appendChild(div);
+        }
+        gridEle.appendChild(fragment);
+      }
+    </script>
   </body>
 </html>
