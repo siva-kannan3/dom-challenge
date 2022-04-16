@@ -9,23 +9,72 @@
       body {
         margin: 0;
         padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
       }
 
       #grid {
         display: grid;
         height: 600px;
         width: 600px;
-        margin: 40px auto 0;
+        margin-top: 40px;
         border: 1px solid lightgray;
       }
 
       .box {
         border: inherit;
       }
+
+      .color-palette {
+        margin-top: 40px;
+        display: flex;
+        gap: 10px;
+      }
+
+      .color {
+        height: 60px;
+        width: 60px;
+        box-shadow: 0 0 3px 1px rgb(0 0 0 / 20%);
+      }
+
+      .red {
+        background-color: #ff1744;
+      }
+
+      .yellow {
+        background-color: #ffea00;
+      }
+
+      .blue {
+        background-color: #2979ff;
+      }
+
+      .green {
+        background-color: #00e676;
+      }
+
+      .black {
+        background-color: black;
+      }
+
+      .white {
+        background-color: white;
+      }
     </style>
   </head>
   <body>
     <div id="grid"></div>
+
+    <div class="color-palette">
+      <div class="color red"></div>
+      <div class="color yellow"></div>
+      <div class="color blue"></div>
+      <div class="color green"></div>
+      <div class="color black"></div>
+      <div class="color white"></div>
+    </div>
 
     <!-- <script src="script.js"></script> -->
     <script>
