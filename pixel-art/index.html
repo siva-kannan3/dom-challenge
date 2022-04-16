@@ -95,6 +95,10 @@
         gridEle.style.grid = `repeat(${rows}, 1fr) / repeat(${cols}, 1fr)`;
         for (let i = 0; i < rows * cols; i++) {
           let div = document.createElement("div");
+          div.addEventListener("click", applyColorOnClick);
+          div.addEventListener("mousedown", onMouseDown);
+          div.addEventListener("mousemove", onMouseMove);
+          div.addEventListener("mouseup", onMouseUp);
           div.classList.add("box");
           fragment.appendChild(div);
         }
@@ -115,6 +119,30 @@
           for (let i = 0; i < colorBoxList.length; i++) {
             colorBoxList[i].classList.remove("active");
           }
+        }
+
+        // apply color on click
+        function applyColorOnClick(event) {
+          console.log("hi");
+          let gridCellEle = event.target;
+          gridCellEle.style.backgroundColor = selectedColor;
+        }
+
+        // apply color on keydown hover
+        let isMouseDown = false;
+        function onMouseDown(event) {
+          isMouseDown = true;
+        }
+
+        function onMouseMove(event) {
+          if (isMouseDown) {
+            let gridCellEle = event.target;
+            gridCellEle.style.backgroundColor = selectedColor;
+          }
+        }
+
+        function onMouseUp(event) {
+          isMouseDown = false;
         }
       }
     </script>
