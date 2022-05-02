@@ -35,7 +35,6 @@ function PixelArt(el, rows, cols) {
 
   // apply color on click
   function applyColorOnClick(event) {
-    console.log("hi");
     let gridCellEle = event.target;
     gridCellEle.style.backgroundColor = selectedColor;
   }
