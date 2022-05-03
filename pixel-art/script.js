@@ -43,7 +43,7 @@ function PixelArt(el, rows, cols) {
       if (prev) {
         modifiedEle.style.backgroundColor = prev.currentColor;
       } else {
-        modifiedEle.style.backgroundColor = "white";
+        modifiedEle.style.backgroundColor = "transparent";
       }
       cellTrackPosition--;
     }
@@ -153,4 +153,4 @@ function PixelArt(el, rows, cols) {
   redoButton.addEventListener("click", handleRedo);
 }
 
-new PixelArt("#grid", 16, 10);
+new PixelArt("#grid", 10, 10);
