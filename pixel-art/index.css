@@ -15,8 +15,14 @@ body {
   border: 1px solid lightgray;
 }
 
+.row {
+  display: flex;
+}
+
 .box {
-  border: inherit;
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgray;
 }
 
 .color-palette {

@@ -4,17 +4,23 @@ function PixelArt(el, rows, cols) {
   // Logic for generating grid layout
   let gridEle = document.querySelector(el);
   let fragment = document.createDocumentFragment();
-  gridEle.style.grid = `repeat(${rows}, 1fr) / repeat(${cols}, 1fr)`;
-  for (let i = 0; i < rows * cols; i++) {
-    let div = document.createElement("div");
-    div.classList.add("box");
-    div.addEventListener("click", applyColorOnClick);
-    div.addEventListener("mousedown", onMouseDown);
-    div.addEventListener("mousemove", onMouseMove);
-    div.addEventListener("mouseup", onMouseUp);
-    fragment.appendChild(div);
+  for (let i = 0; i < rows; i++) {
+    let rowEle = document.createElement("div");
+    rowEle.classList.add("row");
+    for (let j = 0; j < cols; j++) {
+      let colEle = document.createElement("div");
+      colEle.classList.add("box");
+      colEle.dataset.position = `${i + 1}-${j + 1}`;
+      rowEle.appendChild(colEle);
+    }
+    fragment.appendChild(rowEle);
   }
   gridEle.appendChild(fragment);
+
+  gridEle.addEventListener("click", applyColorOnClick);
+  gridEle.addEventListener("mousedown", onMouseDown);
+  gridEle.addEventListener("mousemove", onMouseMove);
+  gridEle.addEventListener("mouseup", onMouseUp);
 
   // Color selection
   let colorBoxList = document.querySelectorAll(".color");
@@ -36,7 +42,9 @@ function PixelArt(el, rows, cols) {
   // apply color on click
   function applyColorOnClick(event) {
     let gridCellEle = event.target;
-    gridCellEle.style.backgroundColor = selectedColor;
+    if (gridCellEle.dataset["position"]) {
+      gridCellEle.style.backgroundColor = selectedColor;
+    }
   }
 
   // apply color on keydown hover
@@ -48,7 +56,9 @@ function PixelArt(el, rows, cols) {
   function onMouseMove(event) {
     if (isMouseDown) {
       let gridCellEle = event.target;
-      gridCellEle.style.backgroundColor = selectedColor;
+      if (gridCellEle.dataset["position"]) {
+        gridCellEle.style.backgroundColor = selectedColor;
+      }
     }
   }
 
@@ -57,4 +67,4 @@ function PixelArt(el, rows, cols) {
   }
 }
 
-new PixelArt("#grid", 10, 10);
+new PixelArt("#grid", 16, 10);
