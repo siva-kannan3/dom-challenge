@@ -50,7 +50,7 @@ ChessBoard.prototype.onClickCell = function (event) {
 };
 
 ChessBoard.prototype.findDiagonals = function (row, col) {
-  let result = [];
+  const result = [];
   result.push(`${row}-${col}`);
   // First iagonal
   /*
@@ -120,15 +120,15 @@ ChessBoard.prototype.findDiagonals = function (row, col) {
 
 ChessBoard.prototype.applyColor = function (prevCells) {
   for (let cell of prevCells) {
-    let cellEle = document.querySelector(`[data-pos='${cell}']`);
+    const cellEle = document.querySelector(`[data-pos='${cell}']`);
     cellEle.style.backgroundColor = "#B20600";
   }
 };
 
 ChessBoard.prototype.removePreviousDiagonalColos = function (prevCells) {
   for (let cell of prevCells) {
-    let cellEle = document.querySelector(`[data-pos='${cell}']`);
-    let [row, col] = cell.split("-");
+    const cellEle = document.querySelector(`[data-pos='${cell}']`);
+    const [row, col] = cell.split("-");
     if (row % 2 === 0) {
       if (col % 2 === 0) {
         cellEle.style.backgroundColor = "white";
