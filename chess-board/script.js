@@ -18,20 +18,7 @@ ChessBoard.prototype.init = function (element, rows, cols) {
         this.onClickCell(event);
       };
       colEle.classList.add("col");
-      // apply colors
-      if (i % 2 === 0) {
-        if (j % 2 === 0) {
-          colEle.style.backgroundColor = "white";
-        } else {
-          colEle.style.backgroundColor = "black";
-        }
-      } else {
-        if (j % 2 === 0) {
-          colEle.style.backgroundColor = "black";
-        } else {
-          colEle.style.backgroundColor = "white";
-        }
-      }
+      this.fillChessCell(colEle, i, j);
       rowEle.appendChild(colEle);
     }
     fragment.appendChild(rowEle);
@@ -46,7 +33,23 @@ ChessBoard.prototype.onClickCell = function (event) {
   const [row, col] = currentEle.dataset.pos.split("-");
   this.cells = this.findDiagonals(Number(row), Number(col));
   console.log(this.cells);
-  this.applyColor(this.cells);
+  this.applyFocusColor(this.cells);
+};
+
+ChessBoard.prototype.fillChessCell = (element, row, col) => {
+  if (row % 2 === 0) {
+    if (col % 2 === 0) {
+      element.style.backgroundColor = "white";
+    } else {
+      element.style.backgroundColor = "black";
+    }
+  } else {
+    if (col % 2 === 0) {
+      element.style.backgroundColor = "black";
+    } else {
+      element.style.backgroundColor = "white";
+    }
+  }
 };
 
 ChessBoard.prototype.findDiagonals = function (row, col) {
@@ -118,7 +121,7 @@ ChessBoard.prototype.findDiagonals = function (row, col) {
   return result;
 };
 
-ChessBoard.prototype.applyColor = function (prevCells) {
+ChessBoard.prototype.applyFocusColor = function (prevCells) {
   for (let cell of prevCells) {
     const cellEle = document.querySelector(`[data-pos='${cell}']`);
     cellEle.style.backgroundColor = "#B20600";
@@ -129,19 +132,7 @@ ChessBoard.prototype.removePreviousDiagonalColos = function (prevCells) {
   for (let cell of prevCells) {
     const cellEle = document.querySelector(`[data-pos='${cell}']`);
     const [row, col] = cell.split("-");
-    if (row % 2 === 0) {
-      if (col % 2 === 0) {
-        cellEle.style.backgroundColor = "white";
-      } else {
-        cellEle.style.backgroundColor = "black";
-      }
-    } else {
-      if (col % 2 === 0) {
-        cellEle.style.backgroundColor = "black";
-      } else {
-        cellEle.style.backgroundColor = "white";
-      }
-    }
+    this.fillChessCell(cellEle, row, col);
   }
 };
 
